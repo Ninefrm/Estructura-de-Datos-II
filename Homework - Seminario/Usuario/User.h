@@ -11,13 +11,16 @@ class User{
     std::string Name;
     std::string Rank;
     std::string RFC;
+    
   public:
     void addName(std::string& aName);
     void addRank(std::string& aRank);
     void addRFC(std::string& aRFC);
+    
     std::string sName();
     std::string sRank();
     std::string sRFC();
+  
 };
 
 #endif

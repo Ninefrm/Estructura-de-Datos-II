@@ -23,3 +23,9 @@ std::string Cliente::sEmail(){
 std::string Cliente::sPhone(){
   return Phone;
 }
+void Cliente::addID(std::string aID){
+  ID = aID;
+}
+std::string Cliente::sID(){
+  return ID;
+}

@@ -8,12 +8,15 @@ class Cliente:public User{
     std::string Payment;
     std::string Email;
     std::string Phone;
+    std::string ID;
   public:
     Cliente();
     void addPayment(std::string& aPayment);
     void addEmail(std::string& aEmail);
     void addPhone(std::string& aPhone);
     void addClient();
+    void addID(std::string aID);
+    std::string sID();
     std::string sPayment();
     std::string sEmail();
     std::string sPhone();
