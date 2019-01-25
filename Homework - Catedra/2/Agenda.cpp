@@ -1,13 +1,19 @@
 #include "Agenda.h"
 void Agenda::addContact(){
+  int C=1;
   std::string Name, Phone, Email, Tmp="1";
   std::ofstream File("example.txt", std::ios::app);
   std::cout<<"Name: ";
   getline(std::cin,Name);
   std::cout<<"Phone: ";
   getline(std::cin,Phone);
-  std::cout<<"Email: ";
-  getline(std::cin,Email);
+  while(C){
+    std::cout<<"Email: ";
+    getline(std::cin,Email);
+    if(Emailcheck(Email)){
+      C=0;
+    }
+  }
   C.addName(Name);
   C.addPhone(Phone);
   C.addEmail(Email);
@@ -132,6 +138,10 @@ void Agenda::DeleteContact(std::string sName){
     if(sName != C.rName()){
       File<<C.rName()<<"#"<<C.rPhone()<<"#"<<C.rEmail()<<"#"<<C.rStatus()<<'\n';
     }
+    if(sName == C.rName() && C.rStatus()=="0"){
+      std::cout<<"ERROR: Logic deleted"<<std::endl;
+        File<<C.rName()<<"#"<<C.rPhone()<<"#"<<C.rEmail()<<"#"<<C.rStatus()<<'\n';
+    }
   }Read.close(); File.close();
   remove("example.txt");
   rename("tmp.txt","example.txt");
@@ -154,4 +164,7 @@ void Agenda::EditStatus(){
       if(Read.eof())break;
       std::cout<<C.rName()<<" "<<C.rPhone()<<" "<<C.rEmail()<<" "<<C.rStatus()<<std::endl;
     }Read.close();
+}
+std::string Emailcheck(std::string Email){
+  getline(Email)
 }
