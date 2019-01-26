@@ -1,25 +1,34 @@
 #include "Agenda.h"
 void Agenda::addContact(){
-  //int C=1;
   std::string Name, Phone, Email, Tmp="1";
   std::ofstream File("example.txt", std::ios::app);
   std::cout<<"Name: ";
   getline(std::cin,Name);
   std::cout<<"Phone: ";
   getline(std::cin,Phone);
-  //while(C){
+  //Validación EMAIL.
+  std::regex regEx("[\\w-+]+(?:\\.[\\w-+]+)*@(?:[\\w-]+\\.)+[a-zA-Z]{2,3}");
+  std::smatch matches;
+  while(true){
     std::cout<<"Email: ";
     getline(std::cin,Email);
-    //if(Emailcheck(Email)){
-      //C=0;
-    //}
-  //}
+    if(std::regex_search(Email,matches,regEx)){
+      C.addEmail(Email);
+      break;
+    }
+    else{
+      std::cout<<"ERROR: INVALID EMAIL."<<std::endl;
+    }
+  }
+
+
   C.addName(Name);
   C.addPhone(Phone);
   C.addEmail(Email);
   C.addStatus(Tmp);
 
   File<<C.rName()<<"#"<<C.rPhone()<<"#"<<C.rEmail()<<"#"<<C.rStatus()<<'\n';
+  std::cout<<"\t \t SUCCESS"<<std::endl;
 }
 void Agenda::ShowContact(){
   std::string Tmp;
@@ -39,7 +48,7 @@ void Agenda::ShowContact(){
       if(Read.eof())break;
       //std::cout<<C.rStatus()<<std::endl;
       if(C.rStatus()=="1"){
-          std::cout<<C.rName()<<" "<<C.rPhone()<<" "<<C.rEmail()<<std::endl;
+          std::cout<<"\t \t"<<C.rName()<<" "<<C.rPhone()<<" "<<C.rEmail()<<std::endl;
       }
     }Read.close();
 }
@@ -60,7 +69,7 @@ void Agenda::SearchContact(std::string sName){
       getline(Read,Tmp,'\n');
       C.addStatus(Tmp);
       if(Read.eof())break;
-      if(sName == C.rName()) std::cout<<C.rName()<<" "<<C.rPhone()<<" "<<C.rEmail()<<" "<<C.rStatus()<<std::endl;
+      if(sName == C.rName()) std::cout<<"\t \t"<<C.rName()<<" "<<C.rPhone()<<" "<<C.rEmail()<<" "<<C.rStatus()<<std::endl;
     }Read.close();
 }
 void Agenda::EditContact(std::string sName){
