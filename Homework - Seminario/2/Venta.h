@@ -6,6 +6,8 @@
 class Venta{
   private:
     Cliente A;
+    std::string Count;
+    int CtS=0;
   public:
     void addClient();
     void ShowClients();

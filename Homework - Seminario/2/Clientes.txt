@@ -1,2 +1,6 @@
-Maximiliano#0#46#max@gmail.com#Debit#Usumacinta#1
-Max#1#2#2#2#2#1
+Maximiliano#0#1#1#1#1#1
+Pedro#2#1#1#1#1#1
+Paco#3#1#1#1#1#1
+Pacope#4#1#1#1#2#1
+Francisco#5#2#2#23#3#1
+Hola#6#3#3#3#3#1

@@ -1,25 +1,9 @@
 #include "Venta.h"
 
 void Venta::addClient(){
-  int CT=0;
   std::stringstream Temp;
   std::string Name, Phone, Email, Payments, RFC, Tmp;
-  std::ifstream Read("Clientes.txt");
-  if(!Read.good())
-    std::cout<<"Error";
-  else
-    while(!Read.eof()){
-      getline(Read,Tmp,'#');
-      getline(Read,Tmp,'#');
-      getline(Read,Tmp,'#');
-      getline(Read,Tmp,'#');
-      getline(Read,Tmp,'#');
-      getline(Read,Tmp,'#');
-      getline(Read,Tmp,'\n');
-      if(Read.eof())break;
-      CT++;
-    }Read.close();
-  std::cout<<CT<<std::endl;
+  std::cout<<CtS<<std::endl;
 
   std::ofstream Write("Clientes.txt", std::ios::app);
   std::cout<<"Name: ";
@@ -37,13 +21,14 @@ void Venta::addClient(){
   A.addEmail(Email);
   A.addRFC(RFC);
   A.addPayment(Payments);
-  Temp<<CT;
+  Temp<<CtS;
   Temp>>Tmp;
   A.addID(Tmp);
   std::string X;
   X="1";
   A.addStatus(X);
 Write<<A.sName()<<"#"<<A.sID()<<"#"<<A.sPhone()<<"#"<<A.sEmail()<<"#"<<A.sPayment()<<"#"<<A.sRFC()<<"#"<<A.sStatus()<<'\n';
+CtS++;
 }
 
 void Venta::ShowClients(){
@@ -130,7 +115,10 @@ void Venta::Edit(std::string Name){
           std::cout<<"1.Name"<<std::endl;
           std::cout<<"2.Phone"<<std::endl;
           std::cout<<"3.Email"<<std::endl;
-          std::cout<<"4.Status"<<std::endl;
+          std::cout<<"4.Payment"<<std::endl;
+          std::cout<<"5.Adress"<<std::endl;
+          std::cout<<"6.Status"<<std::endl;
+
           std::cin>>OP;
           std::cin.ignore();
           switch (OP) {
@@ -165,9 +153,25 @@ void Venta::Edit(std::string Name){
             }
             break;
             case 4:
-            std::cout<<"Status:"<<std::endl;
+            std::cout<<"Payment:"<<std::endl;
             getline(std::cin, Tmp);
-              A.addStatus(Tmp);
+              A.addPayment(Tmp);
+            break;
+            case 5:
+            if(A.sStatus()=="1"){
+              std::cout<<"Adress: "<<std::endl;
+              getline(std::cin, Tmp);
+                A.addRFC(Tmp);
+            }
+            else{
+              std::cout<<"Logic deleted"<<std::endl;
+            }
+            break;
+            case 6:
+              std::cout<<"Status: "<<std::endl;
+              getline(std::cin, Tmp);
+                A.addStatus(Tmp);
+            break;
             default:
             W=0;
             break;
