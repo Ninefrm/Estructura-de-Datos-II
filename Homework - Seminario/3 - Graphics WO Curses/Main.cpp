@@ -1,10 +1,12 @@
 #include <iostream>
+#include <conio.h>
 #include "Venta.h"
 
 int main(int argc, char const *argv[]) {
 
   int W = 1;
   int OP;
+  char p;
   std::string Tmp;
   std::string Usuario, Contrasena;
   int INTENTOS = 0;
@@ -14,8 +16,23 @@ int main(int argc, char const *argv[]) {
     std::cout<<"\t \t \t Transportes Terrestres."<<std::endl;
     std::cout<<"Usuario: ";
     getline(std::cin, Usuario);
-    std::cout<<"Contraseña: ";
-    getline(std::cin, Contrasena);
+    std::cout<<"Password: ";
+    while(p!=13){
+      p=getch();
+      if(p!=8){
+       Contrasena.push_back(p);
+       std::cout<<"*";
+      }
+      else if(Contrasena.size()>0){
+        std::cout<<"\b \b";
+        Contrasena.pop_back();
+      }
+      else
+        std::cout<<"";
+    }
+    Contrasena.pop_back();
+    std::cout<<"\b \b";
+    //getline(std::cin, Contrasena);
     /*std::ofstream Write("UsPass.txt", std::ios::app);
     Write<<Usuario<<'\n'<<Contrasena<<'\n';*/
 
