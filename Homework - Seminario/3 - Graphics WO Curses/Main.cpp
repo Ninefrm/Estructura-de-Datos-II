@@ -17,6 +17,8 @@ int main(int argc, char const *argv[]) {
     std::cout<<"Usuario: ";
     getline(std::cin, Usuario);
     std::cout<<"Password: ";
+    Contrasena="";
+    p=1;
     while(p!=13){
       p=getch();
       if(p!=8){
