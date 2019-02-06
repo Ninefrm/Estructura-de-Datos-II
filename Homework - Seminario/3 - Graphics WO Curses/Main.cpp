@@ -1,134 +1,116 @@
 #include <iostream>
-#include <conio.h>
 #include "Venta.h"
+#include "Usuario.h"
 
 int main(int argc, char const *argv[]) {
-
+  Venta A;
+  Usuario B;
   int W = 1;
-  int OP;
-  char p;
+  int OP, X;
+  int Q = 1;
   std::string Tmp;
   std::string Usuario, Contrasena;
   int INTENTOS = 0;
-  system("cls");
-  while(INTENTOS<3){
-    std::cout<<INTENTOS<<std::endl;
-    std::cout<<"\t \t \t Transportes Terrestres."<<std::endl;
-    std::cout<<"Usuario: ";
-    getline(std::cin, Usuario);
-    std::cout<<"Password: ";
-    Contrasena="";
-    p=1;
-    while(p!=13){
-      p=getch();
-      if(p!=8){
-       Contrasena.push_back(p);
-       std::cout<<"*";
-      }
-      else if(Contrasena.size()>0){
-        std::cout<<"\b \b";
-        Contrasena.pop_back();
-      }
-      else
-        std::cout<<"";
-    }
-    Contrasena.pop_back();
-    std::cout<<"\b \b";
-    //getline(std::cin, Contrasena);
-    /*std::ofstream Write("UsPass.txt", std::ios::app);
-    Write<<Usuario<<'\n'<<Contrasena<<'\n';*/
+  while(Q){
+    system("cls");
+    std::cout<<"1.- Create new user."<<std::endl;
+    std::cout<<"2.- Login."<<std::endl;
+    std::cout<<"3.- Show users."<<std::endl;
+    std::cout<<"4.- Search Users."<<std::endl;
+    std::cout<<"5.- Edit Users."<<std::endl;
 
-    std::string rUsuario, rContrasena;
+    std::cin>>X;
+    std::cin.ignore();
 
-    std::ifstream Read("UsPass.txt");
-        getline(Read,rUsuario,'#');
-        //std::cout<<"A:"<<rUsuario<<std::endl;
-        getline(Read,rContrasena,'#');
-        //std::cout<<"B:"<<rContrasena<<std::endl;
+    INTENTOS = 0;
+    Usuario = "";
+    Contrasena = "";
 
-    std::cout<<"A2:"<<rUsuario<<std::endl;
-    std::cout<<"B2:"<<rContrasena<<std::endl;
-
-    if(Usuario == rUsuario && Contrasena == rContrasena){
-      system("cls");
-      Venta A;
-      while(W){
-        system("cls");
+    switch (X) {
+      case 1:
+        B.NewUser();
+        break;
+      case 2:
+      while(INTENTOS<3){
+        std::cout<<INTENTOS<<std::endl;
         std::cout<<"\t \t \t Transportes Terrestres."<<std::endl;
-        std::cout<<" \n USERNAME: "<<rUsuario<<std::endl;
-        std::cout<<" \n \n \t1.- ADD CLIENT."<<std::endl;
-        std::cout<<"\t2.- SHOW CLIENTS."<<std::endl;
-        std::cout<<"\t3.- SEARCH CLIENT."<<std::endl;
-        std::cout<<"\t4.- EDIT CLIENT."<<std::endl;
-        std::cout<<"\t5.- DELETE CLIENT."<<std::endl;
-        std::cout<<"\t6.- EXIT."<<std::endl;
-        std::cin>>OP;
-        std::cin.ignore();
-        switch ( OP) {
-          case 1:
-          system("cls");
-          std::cout<<"\t \t \t Transportes Terrestres."<<std::endl;
-          std::cout<<" \n USERNAME: "<<rUsuario<<std::endl;
-          std::cout<<" \n \t ADD CLIENT. "<<std::endl;
-            A.addClient();
-            system("PAUSE");
-            break;
+        std::cout<<"Usuario: ";
+        getline(std::cin, Usuario);
+        std::cout<<"Contraseña: ";
+        getline(std::cin, Contrasena);
+        /*std::ofstream Write("UsPass.txt", std::ios::app);
+        Write<<Usuario<<'\n'<<Contrasena<<'\n';*/
 
-          case 2:
+        if(B.login(Usuario, Contrasena)){
           system("cls");
-          std::cout<<"\t \t \t Transportes Terrestres."<<std::endl;
-          std::cout<<" \n USERNAME: "<<rUsuario<<std::endl;
-          std::cout<<" \n \t CLIENT LIST. "<<std::endl;
-            A.ShowClients();
-            system("PAUSE");
-            break;
+          while(W){
+            std::cout<<"\t \t \t Transportes Terrestres."<<std::endl;
+            std::cout<<" \n USERNAME: "<<Usuario<<std::endl;
+            std::cout<<" \n \n \t1.- ADD CLIENT."<<std::endl;
+            std::cout<<"\t2.- SHOW CLIENTS."<<std::endl;
+            std::cout<<"\t3.- SEARCH CLIENT."<<std::endl;
+            std::cout<<"\t4.- EDIT CLIENT."<<std::endl;
+            std::cout<<"\t5.- DELETE CLIENT."<<std::endl;
+            std::cout<<"\t6.- EXIT."<<std::endl;
+            std::cin>>OP;
+            std::cin.ignore();
+            switch ( OP) {
+              case 1:
+                A.addClient();
+                break;
 
-          case 3:
+              case 2:
+                A.ShowClients();
+                break;
+
+              case 3:
+              std::cout<<"Name: "<<std::endl;
+                getline(std::cin, Tmp);
+                A.Search(Tmp);
+                break;
+
+              case 4:
+              std::cout<<"Name: "<<std::endl;
+                getline(std::cin, Tmp);
+                A.Edit(Tmp);
+                break;
+
+              case 5:
+              std::cout<<"Name: "<<std::endl;
+                getline(std::cin, Tmp);
+                A.Delete(Tmp);
+                break;
+              case 6:
+                W=0;
+              break;
+              default:
+              W=0;
+              break;
+            }
+          }
+        }
+        else{
           system("cls");
-          std::cout<<"\t \t \t Transportes Terrestres."<<std::endl;
-          std::cout<<" \n USERNAME: "<<rUsuario<<std::endl;
-          std::cout<<" \n \t SEARCH CLIENTE. "<<std::endl;
-          std::cout<<"Name: "<<std::endl;
-            getline(std::cin, Tmp);
-            A.Search(Tmp);
-            system("PAUSE");
-            break;
-
-          case 4:
-          system("cls");
-          std::cout<<"\t \t \t Transportes Terrestres."<<std::endl;
-          std::cout<<" \n USERNAME: "<<rUsuario<<std::endl;
-          std::cout<<" \n \t EDIT CLIENT. "<<std::endl;
-          std::cout<<"Name: "<<std::endl;
-            getline(std::cin, Tmp);
-            A.Edit(Tmp);
-            system("PAUSE");
-            break;
-
-          case 5:
-          system("cls");
-          std::cout<<"\t \t \t Transportes Terrestres."<<std::endl;
-          std::cout<<" \n USERNAME: "<<rUsuario<<std::endl;
-          std::cout<<" \n \t DELETE CLIENT. "<<std::endl;
-          std::cout<<"Name: "<<std::endl;
-            getline(std::cin, Tmp);
-            A.Delete(Tmp);
-            system("PAUSE");
-            break;
-
-          default:
-          W=0;
-          INTENTOS = 10;
-          break;
+          INTENTOS++;
         }
       }
-    }
-    else{
-      system("cls");
-      INTENTOS++;
+      break;
+      case 3:
+        B.showUsers();
+        std::cin.ignore();
+        break;
+      case 4:
+        getline(std::cin, Tmp);
+        B.searchUsers(Tmp);
+        std::cin.ignore();
+        break;
+      case 5:
+        getline(std::cin, Tmp);
+        B.EditUsers(Tmp);
+        //std::cin.ignore();
+        break;
     }
   }
-
-  if(INTENTOS == 3) std::cout<<"The password you've entered is incorrect."<<std::endl;
+  //rename("UsPass.txt","sPass.txt");
   return 0;
 }

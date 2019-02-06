@@ -3,7 +3,6 @@
 void Usuario::NewUser(){
   std::string Name, Code, Password, Status="1", OfCode;
   std::ofstream File("Usuarios.txt", std::ios::app);
-  std::cin.ignore();
   std::cout<<"Code: ";
   getline(std::cin,Code);
   std::cout<<"Name: ";
@@ -313,7 +312,7 @@ int Usuario::login(std::string sCode, std::string sPassword){
     Status.append(buf,StatusSize);
 
     if(File.eof())break;
-  if(sCode == Code && sPassword == Password)return 1;
+  if(sCode == Code && sPassword == Password && Status == "1")return 1;
   }File.close();
   return 0;
 }

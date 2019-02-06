@@ -3,13 +3,15 @@
 #include <iostream>
 #include <fstream>
 
-struct Aquarius{
-  int CODE;
-  //char DATE[10];
-  double PH;
-  double SALINIDAD;
-  double NITRITOS;
-  double NITRATOS;
-  double AMONIO;
+class Aquarius{
+  public:
+    int CODE;
+    char DATE[10];
+    double PH;
+    double SALINITY;
+    double NITRATES;
+    double NITRITES;
+    double AMMONUIM;
+    int STATUS;
 };
 #endif
