@@ -1,0 +1,59 @@
+//std::cout<<"Hola"<<i;
+leer.seekp(i,leer.beg);
+leer.read((char*)&A,sizeof(A));
+//std::cout<<A.Username<<" "<<strUsername<<std::endl;
+if(strcmp(A.Username,strUsername)==0){
+  leer.seekp(i,leer.beg);
+  std::cout<<"1.- Usuario"<<std::endl;
+  std::cout<<"2.- Password"<<std::endl;
+  std::cout<<"3.- Can the profile add clients?"<<std::endl;
+  std::cout<<"4.- Can the profile search clients?"<<std::endl;
+  std::cout<<"5.- Can the profile show clients?"<<std::endl;
+  std::cout<<"6.- Can the profile modify clients?"<<std::endl;
+  std::cout<<"7.- Can the profile logically delete clients?"<<std::endl;
+  std::cout<<"8.- Can the profile create/see profiles?"<<std::endl;
+  std::cout<<"9.- Status"<<std::endl;
+
+  std::cin>>OP;
+  std::cin.ignore();
+  switch(OP){
+    case 1:
+      //Username();
+    break;
+    case 2:
+      Password();
+      Show();
+      continue;
+    break;
+    case 3:
+      std::cin>>Tmp;
+      A.Permissions1=Tmp;
+      Show();
+    break;
+    case 4:
+      std::cin>>Tmp;
+      A.Permissions2=Tmp;
+    break;
+    case 5:
+      std::cin>>Tmp;
+      A.Permissions3=Tmp;
+    break;
+    case 6:
+      std::cin>>Tmp;
+      A.Permissions4=Tmp;
+    break;
+    case 7:
+      std::cin>>Tmp;
+      A.Permissions5=Tmp;
+    break;
+    case 8:
+      std::cin>>Tmp;
+      A.Permissions6=Tmp;
+    break;
+    case 9:
+      std::cin>>Tmp;
+      A.Status=Tmp;
+    break;
+    default:
+      std::cout<<"Bye"<<std::endl;
+    break;
