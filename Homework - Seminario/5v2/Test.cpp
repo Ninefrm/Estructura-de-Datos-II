@@ -5,6 +5,7 @@ int main(int argc, char const *argv[]) {
   Profile GodMode;
   // GodMode.Add();
   // GodMode.Show();
+  system("cls");
   L.Sesion();
   return 0;
 }

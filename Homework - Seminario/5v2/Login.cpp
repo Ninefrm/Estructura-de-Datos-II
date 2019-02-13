@@ -15,7 +15,7 @@ bool Login::Sesion(){
       Access = Copy(Usuario,Pass);
         std::string Owner(Access.Username);
 //INICIAR LA VENTA
-        // system("cls");
+        system("cls");
         while(W){
           std::cout<<"\t \t \t Transportes Terrestres."<<std::endl;
           std::cout<<" \n USERNAME: "<<Usuario<<std::endl;
@@ -111,7 +111,7 @@ bool Login::Sesion(){
               break;
             case 9:
             if(Access.Permissions1 && Access.Permissions2 && Access.Permissions3 && Access.Permissions4 && Access.Permissions5 && Access.Permissions6){
-              P.Delete();
+              P.Delete(Access.Username);
             }
             else{
               std::cout<<"Access denied"<<std::endl;

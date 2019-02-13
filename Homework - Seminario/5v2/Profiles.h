@@ -20,7 +20,7 @@ class Profile{
     void Edit();
     void Username();
     void Password();
-    void Delete();
+    void Delete(char *sUsername);
     bool RepeatedProfile(char *strUsername);
 };
 #endif

@@ -226,7 +226,7 @@ void Profile::Password(){
   }
 }
 
-void Profile::Delete(){
+void Profile::Delete(char *sUsername){
   std::ifstream leer("Perfiles.txt");
   std::ofstream Tmp("Temp.txt");
   char *strUsername;
@@ -243,7 +243,7 @@ void Profile::Delete(){
   else{
       while(!leer.eof()){
           leer.read((char*)&A,sizeof(A));
-          if(strcmp(A.Username,strUsername)==0 && A.Status == 1 && W.HaveClients(Username)==false){
+          if(strcmp(A.Username,strUsername)==0 && A.Status == 1 && W.HaveClients(Username)==false && Username != sUsername){
 
           }
           else{
